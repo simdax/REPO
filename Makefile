@@ -1,6 +1,6 @@
 NAME = ft_ls
-LD = libft/libft.a prt/libftprintf.a
-INC = $(addprefix -I, . libft libft/list prt/includes)
+LD = libft/libft.a printf/libftprintf.a
+INC = $(addprefix -I, . libft libft/list printf/includes)
 FLAGS = $(INC) -g -Wall -Werror -Wextra
 MAIN = main.c utils.c mklist.c process.c list_utils.c cpyrev.c
 PRINT = $(addprefix print/, main.c utils.c colors.c print.c)
@@ -13,7 +13,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C libft
-	@make -C prt
+	@make -C printf
 	gcc $(FLAGS) -lm -lncurses $(LD) $^ -o $(NAME)
 
 objs/%.o:%.c ft_ls.h
