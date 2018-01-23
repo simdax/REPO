@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 14:42:22 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/19 15:11:08 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/23 18:21:17 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <string.h>
 # include <stdlib.h>
 # include <stdarg.h>
+
+# define BASE "0123456789ABCDEF"
 
 typedef struct		s_list
 {
@@ -52,6 +54,7 @@ void				*ft_memdel(void **ap);
 size_t				ft_nbrsize(int nbr);
 int					ft_atoi(const char *str);
 char				*ft_itoa(int n);
+char				*ft_itoa_base(int n, int base);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);

@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:07:00 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/19 17:44:41 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/23 18:13:05 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void		r_dir(char **dirs, int *flags)
 
 static int		recur(int *flags, long mode, char *name, char *fullname)
 {
-	if (is_dir(mode))
+	if ((mode & S_IFMT) == S_IFDIR)
 	{
 		if (!ft_strcmp(name, fullname))
 			return (1);
@@ -69,7 +69,8 @@ void			print(t_list *el, void *p_read)
 		infos->dirs += 1;
 		infos->dirs[0] = fullname;
 	}
-	if ((!ft_strcmp(name, fullname) && is_dir(sb.st_mode)) ||
+	if (((!ft_strcmp(name, fullname)) &&
+		 (sb.st_mode & S_IFMT) == S_IFDIR) ||
 		(!infos->flags[ALL] && name[0] == '.'))
 		return ;
 	if (infos->flags[LONG])
@@ -110,7 +111,7 @@ void			process(t_list *list, void *p_flags)
 		tmp_list = list;
 		list = ft_cpyrev(list);
 	}
-	if (flags[LONG] && !flags[ALONE])
+	if (flags[LONG] && !flags[ALONE] && size_of_lst(list))
 		ft_printf("total %d\n", infos.block_size);
 	ft_lstiter2(list, print, &infos);
 	if (!flags[LONG] && !flags[ONE])

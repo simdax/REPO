@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:06:45 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/19 15:05:04 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/23 18:13:42 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,41 @@ char		*cat_filename(char *file1, char *file2)
 	return (ret);
 }
 
+char		*basename(char *name)
+{
+	while (*name)
+		++name;
+	while (*name != '/')
+		--name;
+	return (ft_strdup(name));
+}
+
 int			return_stat(char *file, struct stat *sb)
 {
+	char	*name;
+	
 	if (lstat(file, sb) != 0)
 	{
+		name = basename(file);
 		write(2, "ls: ", 4);
-		perror(file);
+		perror(name);
+		free(name);
 		return (0);
 	}
 	return (1);
 }
 
-int			is_dir(long st_mode)
-{
-	return (st_mode & S_IFMT) == S_IFDIR;
-}
-
 int			read_dir(char *file, void *flags)
 {
 	DIR			*dir;
+	char		*name;
 
 	if (!(dir = opendir(file)))
 	{
+		name = basename(file);
 		write(2, "ls: ", 4);
-		perror(file);
+		perror(name);
+		free(name);
 		return (0);
 	}
 	else

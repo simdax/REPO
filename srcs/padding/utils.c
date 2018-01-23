@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 14:08:55 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/19 15:07:17 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/23 18:14:05 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ t_node			**array_from_list(t_list *lst, int all_flag)
 	while (lst)
 	{
 		node = lst->content;
-		if ((!ft_strcmp(node->name, node->fullname) &&
-			is_dir(node->sb.st_mode)) ||
+		if (((!ft_strcmp(node->name, node->fullname) &&
+			  (node->sb.st_mode & S_IFMT) == S_IFDIR)) ||
 			(!all_flag && node->name[0] == '.'))
 			;
 		else
