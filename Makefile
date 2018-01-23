@@ -27,5 +27,4 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean
-	make -C prt re
 	make all
