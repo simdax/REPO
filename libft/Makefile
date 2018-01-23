@@ -6,6 +6,7 @@ FILES := ft_itoa_base.c ft_strrm.c ft_nbrsize.c ft_strany.c ft_lstreduce.c ft_al
 
 include list/make.dep
 include gnl/make.dep
+include array/make.dep
 
 OBJS := $(FILES:%.c=%.o)
 INCLUDES := $(addprefix -I, $(INCLUDES))

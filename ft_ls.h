@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:29:47 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/23 17:25:11 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/23 18:48:39 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,5 @@ void			print(t_list *el, void *flags);
 int				read_dir(char *file, void *flags);
 void			print_dirent(struct dirent *infos);
 char			*cat_filename(char *file1, char *file2);
-
+t_list			*cpyrev(t_list *orig);
 #endif

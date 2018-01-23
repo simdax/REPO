@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:07:00 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/23 18:25:51 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/23 18:48:23 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void			process(t_list *list, void *p_flags)
 	if (flags[REVERSE])
 	{
 		tmp_list = list;
-		list = ft_cpyrev(list);
+		list = cpyrev(list);
 	}
 	if (flags[LONG] && !flags[ALONE] && size_of_lst(list) > 2)
 		ft_printf("total %d\n", infos.block_size);
@@ -117,5 +117,7 @@ void			process(t_list *list, void *p_flags)
 	if (!flags[LONG] && !flags[ONE])
 		print_padded(list, flags);
 	r_dir(infos.dirs, flags);
+	if (tmp_list)
+		ft_lstdel(&tmp_list, clean);
 	ft_lstdel(&list, clean);
 }
