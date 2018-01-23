@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/18 19:14:44 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/18 19:18:14 by scornaz          ###   ########.fr       */
+/*   Created: 2018/01/18 18:52:48 by scornaz           #+#    #+#             */
+/*   Updated: 2018/01/23 13:51:16 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef PROTOTYPES_H
+# define PROTOTYPES_H
 
-typedef struct	s_flags
-{
-	int			star;
-	int			zero;
-	int			plus;
-	int			hash;
-	int			minus;
-	int			apostrophe;
-	int			space;
-	int			precision;
-	int			width;
-	char		type[3];
-	int			count;
-}				t_flags;
+# include "prototypes_ca.h"
 
-# define FLAGS		"0#+- '*"
-# define TYPES		"scdiouxSCDIOUX%"
-# define MODIFIERS2	"hl"
-# define MODIFIERS1	"jz"
+int			ft_printf(const char *str, ...);
+void		print_and_free(t_num **nums, char ***str, t_array *buffer);
+void		hydrate(t_num *a, t_flags *flags);
 
 #endif

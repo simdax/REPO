@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 17:52:55 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/19 15:58:05 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/23 17:12:39 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,42 @@ static void	take_type(char **s, char *flags)
 		flags[i] = 'E';
 }
 
+static int	matoi(char *str)
+{
+	int res;
+
+	res = 0;
+	while (*str && ft_isdigit(*str))
+		res = *str++ - '0' + res * 10;
+	return (res);
+}
+
+void		change_type(t_flags *flags)
+{
+	if (ft_strchr(flags->type, 'U'))
+	{
+		flags->type[0] = 'l';
+		flags->type[1] = 'u';
+	}
+	else if (ft_strchr(flags->type, 'O'))
+	{
+		flags->type[0] = 'l';
+		flags->type[1] = 'o';
+	}
+	else if (ft_strchr(flags->type, 'D'))
+	{
+		flags->type[0] = 'l';
+		flags->type[1] = 'd';
+	}
+	else if (ft_strchr(flags->type, 'p'))
+	{
+		flags->hash = 1;
+		flags->type[0] = 'l';
+		flags->type[1] = 'l';
+		flags->type[2] = 'p';
+	}
+}
+
 t_flags		parse(char *str)
 {
 	t_flags		flags;
@@ -74,12 +110,12 @@ t_flags		parse(char *str)
 	cpy = str;
 	flags = (t_flags){0, 0, 0, 0, 0, 0, 0, -1, 0, "E", 0};
 	take_flags(&str, &flags);
-	flags.width = ft_atoi(str);
+	flags.width = matoi(str);
 	str += flags.width ? ft_nbrsize(flags.width) : 0;
 	if (*str == '.')
 	{
 		++str;
-		flags.precision = ft_atoi(str);
+		flags.precision = matoi(str);
 		if (flags.precision)
 			str += ft_nbrsize(flags.precision);
 		else if (str[0] == '0')
@@ -87,6 +123,7 @@ t_flags		parse(char *str)
 	}
 	if (*str)
 		take_type(&str, flags.type);
+	change_type(&flags);
 	flags.count = str - cpy;
 	return (flags);
 }

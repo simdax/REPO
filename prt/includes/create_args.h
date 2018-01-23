@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prototypes.h                                       :+:      :+:    :+:   */
+/*   create_args.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/18 18:52:48 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/18 19:15:44 by scornaz          ###   ########.fr       */
+/*   Created: 2018/01/18 19:04:02 by scornaz           #+#    #+#             */
+/*   Updated: 2018/01/23 11:20:46 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROTOTYPES_H
-# define PROTOTYPES_H
+#ifndef CREATE_ARGS_H
+# define CREATE_ARGS_H
 
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+# include <stdint.h>
+# include "libft.h"
+# include "types_ca.h"
 # include "prototypes_ca.h"
-
-int			ft_printf(const char *str, ...);
-void		print_and_free(t_num **nums, char ***str, int *count);
-void		hydrate(t_num *a, t_flags *flags);
 
 #endif
