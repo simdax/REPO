@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:29:47 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/25 11:50:32 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/25 12:34:44 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ typedef struct	s_padding_args
 	int space;
 }				t_padding_args;
 
-int		get_max_gw(t_list *a, int val, void *flags);
-int		get_max_usr(t_list *a, int val, void *flags);
+char			*get_size(int mode, int size, int dev);
+int				get_max_gw(t_list *a, int val, void *flags);
+int				get_max_usr(t_list *a, int val, void *flags);
 char			get_extended_attributes(char *path);
 int				famlen(t_node **str);
 void			free_fam(t_node **str);

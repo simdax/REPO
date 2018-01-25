@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 15:24:49 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/25 11:50:39 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/25 12:35:04 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ int		get_max_size(t_list *a, int val, void *flags)
 	node = a->content;
 	if (!((int*)flags)[ALL] && node->name[0] == '.')
 		return (val);
-	size = (int)node->sb.st_size;
+	node->size = get_size(node->sb.st_mode, node->sb.st_size,
+				node->sb.st_rdev);
+	size = ft_strlen(node->size);
 	return (size > val ? size : val);
 }
