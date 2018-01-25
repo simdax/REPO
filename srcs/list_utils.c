@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 15:24:49 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/25 12:35:04 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/25 13:14:51 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ int		get_max_usr(t_list *a, int val, void *flags)
 	struct passwd	*p;
 	
 	node = a->content;
-	if (!((int*)flags)[ALL] && node->name[0] == '.')
-		return (val);
 	p = getpwuid(node->sb.st_uid);
 	node->usr = p ? ft_strdup(p->pw_name) :
 				ft_itoa_base(node->sb.st_uid, 10);
+	if (!((int*)flags)[ALL] && node->name[0] == '.')
+		return (val);
 	nb_usr = ft_strlen(node->usr);
 	return (nb_usr > val ? nb_usr : val);	
 }
@@ -57,11 +57,11 @@ int		get_max_gw(t_list *a, int val, void *flags)
 	struct group	*g;
 	
 	node = a->content;
-	if (!((int*)flags)[ALL] && node->name[0] == '.')
-		return (val);
 	g = getgrgid(node->sb.st_gid);
 	node->gp = g ? ft_strdup(g->gr_name) :
 				ft_itoa_base(node->sb.st_gid, 10);
+	if (!((int*)flags)[ALL] && node->name[0] == '.')
+		return (val);
 	nb_gp = ft_strlen(node->gp);
 	return (nb_gp > val ? nb_gp : val);	
 }
@@ -96,10 +96,10 @@ int		get_max_size(t_list *a, int val, void *flags)
 	int		size;
 
 	node = a->content;
+	node->size = ft_strdup(get_size(node->sb.st_mode, node->sb.st_size,
+				node->sb.st_rdev));
 	if (!((int*)flags)[ALL] && node->name[0] == '.')
 		return (val);
-	node->size = get_size(node->sb.st_mode, node->sb.st_size,
-				node->sb.st_rdev);
 	size = ft_strlen(node->size);
 	return (size > val ? size : val);
 }

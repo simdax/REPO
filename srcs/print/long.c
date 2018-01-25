@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:07:26 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/25 12:40:49 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/25 13:11:09 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ void		print_stat(t_node *node, t_infos *infos)
 			infos->max_usr, node->usr,
 			infos->max_gw, node->gp,
 			infos->max_sizes,
-			get_size(node->sb.st_mode, node->sb.st_size, node->sb.st_rdev),
-			  //node->size,
+			node->size,
 			ft_date(&(node->sb.st_ctime)),
 			infos->flags[COLOR] ? get_color(node->sb) : 37,
 			node->name,

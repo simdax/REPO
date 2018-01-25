@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 15:26:29 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/25 11:53:11 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/25 13:14:57 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void		clean(void *el, size_t len)
 	e = el;
 	free(e->name);
 	free(e->fullname);
-//	free(e->gp);
-//	free(e->usr);
+	free(e->gp);
+	free(e->usr);
+	free(e->size);
+	free(e);
 }
