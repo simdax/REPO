@@ -6,7 +6,7 @@
 /*	 By: scornaz <marvin@42.fr>						+#+	 +:+	   +#+		  */
 /*												  +#+#+#+#+#+	+#+			  */
 /*	 Created: 2018/01/24 10:35:24 by scornaz		   #+#	  #+#			  */
-/*   Updated: 2018/01/24 11:04:08 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/25 11:29:53 by scornaz          ###   ########.fr       */
 /*																			  */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 char		get_extended_attributes(char *path)
 {
-	acl_t	acl;
-	char	c;
-	int		nbr;
-	char	*buffer;
+	acl_t		acl;
+	int			nbr;
+	char		c;
+	static char	buffer[64];
 
-	buffer = 0;
 	c = ' ';
 	nbr = listxattr(path, buffer, 64, XATTR_NOFOLLOW);
 	acl = acl_get_file(path, ACL_TYPE_EXTENDED);

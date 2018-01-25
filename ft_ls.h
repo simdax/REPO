@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:29:47 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/23 18:48:39 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/25 11:29:31 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <sys/xattr.h>
+# include <sys/acl.h>
 # include <unistd.h>
 # include <dirent.h>
 # include <fcntl.h>
@@ -62,6 +64,7 @@ typedef struct	s_padding_args
 	int space;
 }				t_padding_args;
 
+char			get_extended_attributes(char *path);
 int				famlen(t_node **str);
 void			free_fam(t_node **str);
 t_node			**array_from_list(t_list *lst, int all_flag);
