@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:29:47 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/25 11:29:31 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/25 11:50:32 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ typedef struct	s_node
 	char		*name;
 	char		*fullname;
 	struct stat	sb;
+	char		*size;
+	char		*gp;
+	char		*usr;
 }				t_node;
 
 typedef struct	s_infos
@@ -51,6 +54,8 @@ typedef struct	s_infos
 	int			max_sizes;
 	int			max_inodes;
 	int			max_len;
+	int			max_usr;
+	int			max_gw;
 	int			block_size;
 	char		**dirs;
 	char		**all_files;
@@ -64,6 +69,8 @@ typedef struct	s_padding_args
 	int space;
 }				t_padding_args;
 
+int		get_max_gw(t_list *a, int val, void *flags);
+int		get_max_usr(t_list *a, int val, void *flags);
 char			get_extended_attributes(char *path);
 int				famlen(t_node **str);
 void			free_fam(t_node **str);

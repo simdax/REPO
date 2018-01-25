@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:07:26 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/25 11:30:49 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/25 12:25:11 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ void		print_stat(t_node *node, t_infos *infos)
 	char *smlink;
 
 	init_print_stat(&pw, &gd, &smlink, node);
-	ft_printf("\e[37m%s%c%*d %s  %s  %*s%s\e[%dm%s%s%s\e[37m\n",
+	ft_printf("\e[37m%s%c%*d %-*s  %-*s  %*s%s\e[%dm%s%s%s\e[37m\n",
 			lsperms(node->sb.st_mode),
 			get_extended_attributes(node->fullname),
 			(int)ft_nbrsize(infos->max_inodes) + 1,
 			(int)node->sb.st_nlink,
-			pw, gd,
+			infos->max_usr, node->usr,
+			infos->max_gw, node->gp,
 			(int)ft_nbrsize(infos->max_sizes),
 			get_size(node->sb.st_mode, node->sb.st_size, node->sb.st_rdev),
 			ft_date(&(node->sb.st_ctime)),
