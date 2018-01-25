@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/21 16:46:01 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/21 16:46:01 by scornaz          ###   ########.fr       */
+/*   Created: 2018/01/24 12:02:40 by scornaz           #+#    #+#             */
+/*   Updated: 2018/01/24 12:04:24 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "unicode.h"
+#include <stdio.h>
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+int	main(void)
 {
-	while (lst)
-	{
-		f(lst);
-		lst = lst->next;
-	}
-}
-
-void	ft_lstiter2(t_list *lst, void (*f)(t_list *elem, void *args), void *mem)
-{
-	while (lst)
-	{
-		f(lst, mem);
-		lst = lst->next;
-	}
+ft_putstr_utf8(L"☺️🙃\n");
+ft_putchar_utf8(L'☺');
+printf("%s", transform_utf8(L"\ncoucou les 😜 de ouf"));
 }

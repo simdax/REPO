@@ -6,22 +6,24 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 12:26:42 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/21 12:26:55 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/24 11:32:14 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_maths.h"
 
-int	round_up(float f)
+int		round_up(float f)
 {
 	return ((int)f + 1);
 }
 
-int is_prime(int nb)
+int		is_prime(int nb)
 {
-	int sqrt = round_up(ft_root(nb, 2));
-	int i = 6;
+	int sqrt;
+	int i;
 
+	i = 6;
+	sqrt = round_up(ft_root(nb, 2));
 	if (!(nb % 2) || !(nb % 3))
 		return (0);
 	while (i <= sqrt)
@@ -35,9 +37,11 @@ int is_prime(int nb)
 
 void	prime_factors(int nb)
 {
-	int sqrt = round_up(ft_root(nb, 2));
-	int i = 2;
+	int sqrt;
+	int i;
 
+	i = 2;
+	sqrt = round_up(ft_root(nb, 2));
 	while (i <= sqrt)
 	{
 		while (!(nb % i))
@@ -47,5 +51,4 @@ void	prime_factors(int nb)
 		}
 		++i;
 	}
-	printf("%d\n", nb);
 }

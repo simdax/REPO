@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:07:26 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/23 17:58:35 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/25 11:04:48 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@ void		init_print_stat(char **pw, char **gd, char **smlink,
 	*gd = g ? g->gr_name : ft_itoa_base(node->sb.st_gid, 10);
 }
 
+char		*get_size(int mode, int size, int dev)
+{
+	static char	size_str[33];
+
+	ft_bzero(size_str, 33);
+	if (S_ISCHR(mode) || S_ISBLK(mode))
+		return (ft_sprintf(size_str, "%ld, %ld",
+						   (long) major(dev), (long) minor(dev)));
+	else
+		return (ft_sprintf(size_str, "%lld", (long long)size));
+}
+
 void		print_stat(t_node *node, t_infos *infos)
 {
 	char *pw;
@@ -39,14 +51,14 @@ void		print_stat(t_node *node, t_infos *infos)
 	char *smlink;
 
 	init_print_stat(&pw, &gd, &smlink, node);
-	ft_printf("\e[37m%s%c%*d %s  %s  %*lld%s\e[%dm%s%s%s\e[37m\n",
+	ft_printf("\e[37m%s%c%*d %s  %s  %*s%s\e[%dm%s%s%s\e[37m\n",
 			lsperms(node->sb.st_mode),
 			' ',
 			(int)ft_nbrsize(infos->max_inodes) + 1,
 			(int)node->sb.st_nlink,
 			pw, gd,
 			(int)ft_nbrsize(infos->max_sizes),
-			(long long)node->sb.st_size,
+			get_size(node->sb.st_mode, node->sb.st_size, node->sb.st_rdev),
 			ft_date(&(node->sb.st_ctime)),
 			infos->flags[COLOR] ? get_color(node->sb) : 37,
 			node->name,

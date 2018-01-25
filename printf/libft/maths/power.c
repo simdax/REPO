@@ -6,21 +6,19 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 12:26:35 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/21 12:26:38 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/24 11:31:12 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_maths.h"
 
-int count;
-
 float	ft_pow(float nb, float pow)
 {
 	float	res;
-	int	integer;
-	float floating_part;
-	int	int_floating_part;
-	float add;
+	int		integer;
+	float	floating_part;
+	int		int_floating_part;
+	float	add;
 
 	integer = (int)pow;
 	floating_part = pow - integer;
@@ -34,20 +32,17 @@ float	ft_pow(float nb, float pow)
 	else
 		return (1 / ft_pow(nb, -pow));
 	if (floating_part > 0)
-	{
-		//      int_floating_part = (1.0 / floating_part);
 		add = ft_root(nb, floating_part);
-	}
 	return (res * add);
 }
 
 float	ft_pow2(float nb, float pow)
 {
 	float	res;
-	int	integer;
-	float floating_part;
-	int	int_floating_part;
-	float add;
+	int		integer;
+	float	floating_part;
+	int		int_floating_part;
+	float	add;
 
 	integer = (int)pow;
 	floating_part = pow - integer;
@@ -60,11 +55,5 @@ float	ft_pow2(float nb, float pow)
 			res *= nb;
 	else
 		return (1 / ft_pow(nb, -pow));
-	/* if (floating_part > 0) */
-	/*   { */
-	/*     //      int_floating_part = (1.0 / floating_part); */
-	/*     add = ft_root(nb, floating_part); */
-	/*   } */
-	/* count = 7; */
 	return (res * add);
 }

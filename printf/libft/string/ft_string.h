@@ -6,12 +6,12 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 11:31:51 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/23 11:32:35 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/24 11:38:01 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_STRING_H
-#define FT_STRING_H
+# define FT_STRING_H
 
 # include "libft.h"
 

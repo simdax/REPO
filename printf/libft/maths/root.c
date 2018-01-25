@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 12:27:05 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/21 12:27:09 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/24 11:35:57 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 float	ft_root(float nb, float exp)
 {
-	double	i = 1;
-	double	res = 0;
-	int		precision = 7;
+	double	i;
+	double	res;
+	int		precision;
 
-	if (!exp) //undefined
+	i = 1;
+	res = 0;
+	precision = 7;
+	if (!exp)
 		return (0);
 	while (precision)
 	{
@@ -30,15 +33,18 @@ float	ft_root(float nb, float exp)
 		}
 		res += i;
 	}
-	return (res);  
+	return (res);
 }
 
 float	ft_sqrt(float nb)
 {
-	double	i = 1;
-	double	res = 0;
-	int		precision = 7;
+	double	i;
+	double	res;
+	int		precision;
 
+	i = 1;
+	res = 0;
+	precision = 7;
 	while (precision)
 	{
 		if (res * res > nb)
@@ -49,17 +55,19 @@ float	ft_sqrt(float nb)
 		}
 		res += i;
 	}
-	return (res);  
+	return (res);
 }
 
-
-float ft_div(float a, float b)
+float	ft_div(float a, float b)
 {
-	float tmp = 0;
-	float res = 0;
-	float i = 1;
-	int remainders[(int)b];
+	float	tmp;
+	float	res;
+	float	i;
+	int		remainders[(int)b];
 
+	tmp = 0;
+	res = 0;
+	i = 1;
 	ft_bzero(remainders, (int)b);
 	while (tmp <= a)
 	{

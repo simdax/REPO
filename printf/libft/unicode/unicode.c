@@ -6,12 +6,22 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 10:48:48 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/23 12:13:05 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/24 12:02:18 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
+
+static int		fuck_norminette(unsigned char *const buffer,
+							const unsigned int code)
+{
+	buffer[0] = 0xF0 | (code >> 18);
+	buffer[1] = 0x80 | ((code >> 12) & 0x3F);
+	buffer[2] = 0x80 | ((code >> 6) & 0x3F);
+	buffer[3] = 0x80 | (code & 0x3F);
+	return (4);
+}
 
 static int		code_to_utf8(unsigned char *const buffer,
 							const unsigned int code)
@@ -35,24 +45,8 @@ static int		code_to_utf8(unsigned char *const buffer,
 		return (3);
 	}
 	else if (code <= 0x10FFFF)
-	{
-		buffer[0] = 0xF0 | (code >> 18);
-		buffer[1] = 0x80 | ((code >> 12) & 0x3F);
-		buffer[2] = 0x80 | ((code >> 6) & 0x3F);
-		buffer[3] = 0x80 | (code & 0x3F);
-		return (4);
-	}
+		return (fuck_norminette(buffer, code));
 	return (0);
-}
-
-unsigned char	*unicode_to_utf8(int str)
-{
-	unsigned char	*unicode;
-
-	unicode = malloc(5);
-	ft_bzero(unicode, 5);
-	code_to_utf8(unicode, str);
-	return (unicode);
 }
 
 int				ft_putchar_utf8(int str)
@@ -60,7 +54,9 @@ int				ft_putchar_utf8(int str)
 	unsigned char	*unicode;
 	unsigned char	*cpy;
 
-	unicode = unicode_to_utf8(str);
+	unicode = malloc(5);
+	ft_bzero(unicode, 5);
+	code_to_utf8(unicode, str);
 	cpy = unicode;
 	while (*unicode)
 	{
@@ -90,10 +86,10 @@ char			*transform_utf8(int *str)
 	ft_bzero(unicode, 5);
 	while (str[nb_char])
 		++nb_char;
-	if(!(ret = (char*)malloc(sizeof(int) * nb_char + 1 )))
+	if (!(ret = (char*)malloc(sizeof(int) * nb_char + 1)))
 		return (0);
 	cpy = ret;
-	while(*str)
+	while (*str)
 	{
 		i = 0;
 		nb_char = code_to_utf8(unicode, *str++);

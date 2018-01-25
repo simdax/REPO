@@ -1,8 +1,0 @@
-#include "unicode.h"
-#include <stdio.h>
-
-int main()
-{
-	ft_putstr_utf8(L"☺️🙃");
-	printf("%s", transform_utf8(L"\ncoucou les 😜 de ouf"));
-}

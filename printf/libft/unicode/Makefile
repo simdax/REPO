@@ -1,7 +1,6 @@
 all:
-	@mv test test.c
 	@make -C ..
-	gcc -g -I.. -L.. -lft test.c unicode.c ; mv test.c test
+	gcc -g -I.. -L.. -lft test.c unicode.c
 
 run: all
 	./a.out
