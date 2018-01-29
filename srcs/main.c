@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 09:52:51 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/23 17:57:09 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/29 09:40:55 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static char		**solve_link(int len, char **argv)
 	ret = (char**)malloc(sizeof(char*) * (len + 1));
 	while (*argv)
 	{
-		if (return_stat(*argv, &sb))
+		if (return_stat(*argv, &sb, 0))
 		{
 			if (S_ISLNK(sb.st_mode) && !FLAGS[LONG])
 			{

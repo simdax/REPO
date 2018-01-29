@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:06:45 by scornaz           #+#    #+#             */
-/*   Updated: 2018/01/23 18:13:42 by scornaz          ###   ########.fr       */
+/*   Updated: 2018/01/29 09:44:12 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ char		*basename(char *name)
 		++name;
 	while (*name != '/')
 		--name;
-	return (ft_strdup(name));
+	return (ft_strdup(++name));
 }
 
-int			return_stat(char *file, struct stat *sb)
+int			return_stat(char *file, struct stat *sb, int full)
 {
 	char	*name;
 	
 	if (lstat(file, sb) != 0)
 	{
-		name = basename(file);
+		name = (full && ft_strchr(file, '/')) ? basename(file) : ft_strdup(file);
 		write(2, "ls: ", 4);
 		perror(name);
 		free(name);
@@ -69,7 +69,7 @@ int			read_dir(char *file, void *flags)
 
 	if (!(dir = opendir(file)))
 	{
-		name = basename(file);
+		name = ft_strchr(file, '/') ? basename(file) : ft_strdup(file);
 		write(2, "ls: ", 4);
 		perror(name);
 		free(name);
